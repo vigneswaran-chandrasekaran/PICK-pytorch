@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-# @Author: Wenwen Yu
-# @Created Time: 7/13/2020 10:26 PM
-
+"""
+python test.py --checkpoint infer_model/model_best.pth
+"""
 import argparse
 import torch
 from tqdm import tqdm

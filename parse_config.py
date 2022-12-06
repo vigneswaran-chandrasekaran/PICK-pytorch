@@ -29,7 +29,9 @@ class ConfigParser:
         self._config = _update_config(config, modification)
         self.resume = resume
         # str to bool, from modification or from default json file
-        self.update_config('distributed', (self.config['distributed'] == 'true') or self.config['distributed'] == True)
+
+        #self.update_config('distributed', (self.config['distributed'] == 'true') or self.config['distributed'] == True)
+        self.config['distributed'] = False
 
         if self.config['local_rank'] == 0: # only local master process create saved output dir
             # set save_dir where trained model and log will be saved.

@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-# @Author: Wenwen Yu
-# @Created Time: 7/12/2020 11:29 PM
-
+"""
+python train.py -c config.json
+# --resume saved/models/PICK_Default/test_0917_074722/model_best.pth
+"""
 import os
 import argparse
 import collections
@@ -20,6 +20,8 @@ from trainer import Trainer
 
 import torch.nn as nn
 import torch.optim as optim
+
+torch.cuda.empty_cache()
 
 # fix random seeds for reproducibility
 SEED = 123
@@ -143,7 +145,7 @@ if __name__ == '__main__':
     options = [
         # CustomArgs(['--lr', '--learning_rate'], default=0.0001, type=float, target='optimizer;args;lr',
         #            help='learning rate (default: 0.0001)'),
-        CustomArgs(['--bs', '--batch_size'], default=2, type=int, target='train_data_loader;args;batch_size',
+        CustomArgs(['--bs', '--batch_size'], default=1, type=int, target='train_data_loader;args;batch_size',
                    help='batch size (default: 2)'),
         # CustomArgs(['--ng', '--n_gpu'], default=2, type=int, target='n_gpu',
         #            help='num of gpu (default: 2)'),
