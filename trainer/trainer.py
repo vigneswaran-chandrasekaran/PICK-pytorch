@@ -461,13 +461,21 @@ class Trainer:
         if checkpoint['config']['model_arch'] != self.config['model_arch']:
             self.logger_warning("Warning: Architecture configuration given in config file is different from that of "
                                 "checkpoint. This may yield an exception while state_dict is being loaded.")
-        self.model.load_state_dict(checkpoint['state_dict'])
+        checkpoint['state_dict']['decoder.bilstm_layer.mlp.mlp.0.weight'] = self.model.state_dict()['decoder.bilstm_layer.mlp.mlp.0.weight']
+        checkpoint['state_dict']['decoder.bilstm_layer.mlp.mlp.0.bias'] = self.model.state_dict()['decoder.bilstm_layer.mlp.mlp.0.bias']
+        checkpoint['state_dict']['decoder.crf_layer.transitions'] = self.model.state_dict()['decoder.crf_layer.transitions']
+        checkpoint['state_dict']['decoder.crf_layer._constraint_mask'] = self.model.state_dict()['decoder.crf_layer._constraint_mask']
+        checkpoint['state_dict']['decoder.crf_layer.start_transitions'] = self.model.state_dict()['decoder.crf_layer.start_transitions']
+        checkpoint['state_dict']['decoder.crf_layer.end_transitions'] = self.model.state_dict()['decoder.crf_layer.end_transitions']
 
+        self.model.load_state_dict(checkpoint['state_dict'])
+        #exit(1)
         # load optimizer state from checkpoint only when optimizer type is not changed.
+        """
         if checkpoint['config']['optimizer']['type'] != self.config['optimizer']['type']:
             self.logger_warning("Warning: Optimizer type given in config file is different from that of checkpoint. "
                                 "Optimizer parameters not being resumed.")
         else:
             self.optimizer.load_state_dict(checkpoint['optimizer'])
-
+        """
         self.logger_info("Checkpoint loaded. Resume training from epoch {}".format(self.start_epoch))

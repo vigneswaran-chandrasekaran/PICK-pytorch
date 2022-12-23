@@ -205,6 +205,7 @@ class Decoder(nn.Module):
 
         # (B, N*T, out_dim)
         logits = self.bilstm_layer(new_x, doc_seq_len, (None, None))
+        #print(logits.shape)
 
         log_likelihood = None
         if self.training:
@@ -214,5 +215,6 @@ class Decoder(nn.Module):
                                             mask=new_mask,
                                             input_batch_first=True,
                                             keepdim=True)
-
+        #print(log_likelihood.shape)
+        #exit(1)
         return logits, new_mask, log_likelihood

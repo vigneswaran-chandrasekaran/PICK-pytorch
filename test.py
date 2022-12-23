@@ -92,9 +92,9 @@ if __name__ == '__main__':
     args = argparse.ArgumentParser(description='PyTorch PICK Testing')
     args.add_argument('-ckpt', '--checkpoint', default=None, type=str,
                       help='path to load checkpoint (default: None)')
-    args.add_argument('--bt', '--boxes_transcripts', default=None, type=str,
+    args.add_argument('--bt', '--boxes_transcripts', default="data/test_data_example/boxes_and_transcripts", type=str,
                       help='ocr results folder including boxes and transcripts (default: None)')
-    args.add_argument('--impt', '--images_path', default=None, type=str,
+    args.add_argument('--impt', '--images_path', default="data/test_data_example/images/", type=str,
                       help='images folder path (default: None)')
     args.add_argument('-output', '--output_folder', default='predict_results', type=str,
                       help='output folder (default: predict_results)')

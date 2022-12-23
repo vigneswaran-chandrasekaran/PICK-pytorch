@@ -1,7 +1,7 @@
 """
-python train.py -c config.json
-# --resume saved/models/PICK_Default/test_0917_074722/model_best.pth
+python train.py -c config.json --resume saved/models/PICK_Default/test_1125_113617/model_best.pth
 """
+
 import os
 import argparse
 import collections

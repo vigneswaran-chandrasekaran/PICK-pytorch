@@ -64,7 +64,8 @@ class PICKDataset(Dataset):
             if self.iob_tagging_type != 'box_level':
                 if not self.entities_folder.exists():
                     raise FileNotFoundError('Entity folder is not exist!')
-        else:  # used for test mode
+        else:  # used for test model
+
             self.boxes_and_transcripts_folder: Path = Path(boxes_and_transcripts_folder)
             self.images_folder: Path = Path(images_folder)
 
